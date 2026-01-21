@@ -9,6 +9,7 @@ import About from './pages/about.jsx'
 import Help from './pages/help.jsx'
 import Settings from './pages/setting.jsx'
 import Welcome from './pages/welcome.jsx'
+import OrganizeNotes from "./modules/organize-notes/organizeNotes";
 
 function App() {
   
@@ -19,10 +20,8 @@ function App() {
         <Sidebar />
         <main className="flex-1 p-4">
           <Routes>
-            {/* 1. STARTUP FIX: This shows the Home page as soon as the site loads */}
             <Route path="/" element={<Welcome />} />
-            
-            {/* Existing Routes */}
+
             <Route path="/home" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/contact" element={<Contact />} />
@@ -30,7 +29,9 @@ function App() {
             <Route path="/help" element={<Help />} />
             <Route path="/settings" element={<Settings />} />
 
-            {/* 2. CATCH-ALL: Redirects any broken links back to Home */}
+            {/* ✅ FIXED ORDER */}
+            <Route path="/organize-notes" element={<OrganizeNotes />} />
+
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>

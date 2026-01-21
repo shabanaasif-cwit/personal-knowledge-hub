@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate(); // ✅ ADDED
 
   return (
     <>
@@ -9,7 +11,10 @@ function Header() {
         <div className="max-w-7xl mx-auto flex items-center justify-between p-3 sm:p-4 md:p-5 px-4 sm:px-6 md:px-8">
 
           {/* Title */}
-          <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold truncate">
+          <h1
+            onClick={() => navigate("/home")}
+            className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold truncate cursor-pointer"
+          >
             📚 Personal Knowledge Hub
           </h1>
 
@@ -27,10 +32,26 @@ function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex">
             <ul className="flex space-x-4 lg:space-x-8 font-medium text-sm md:text-base">
-              <li><a href="/home" className="hover:text-gray-300 transition">Home</a></li>
-              <li><a href="/dashboard" className="hover:text-gray-300 transition">Notes</a></li>
-              <li><a href="/contact" className="hover:text-gray-300 transition">Contact</a></li>
-              <li><a href="/about" className="hover:text-gray-300 transition">About</a></li>
+              <li>
+                <button onClick={() => navigate("/home")} className="hover:text-gray-300 transition">
+                  Home
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/dashboard")} className="hover:text-gray-300 transition">
+                  Notes
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/contact")} className="hover:text-gray-300 transition">
+                  Contact
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/about")} className="hover:text-gray-300 transition">
+                  About
+                </button>
+              </li>
             </ul>
           </nav>
 
@@ -40,10 +61,26 @@ function Header() {
         {isOpen && (
           <div className="md:hidden bg-gray-900">
             <ul className="flex flex-col space-y-2 p-4 font-medium">
-              <li><a href="/home" className="hover:text-gray-300 transition block py-2">Home</a></li>
-              <li><a href="/dashboard" className="hover:text-gray-300 transition block py-2">Dashboard</a></li>
-              <li><a href="/contact" className="hover:text-gray-300 transition block py-2">Contact</a></li>
-              <li><a href="/about" className="hover:text-gray-300 transition block py-2">About</a></li>
+              <li>
+                <button onClick={() => navigate("/home")} className="hover:text-gray-300 transition block py-2">
+                  Home
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/dashboard")} className="hover:text-gray-300 transition block py-2">
+                  Dashboard
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/contact")} className="hover:text-gray-300 transition block py-2">
+                  Contact
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/about")} className="hover:text-gray-300 transition block py-2">
+                  About
+                </button>
+              </li>
             </ul>
           </div>
         )}
