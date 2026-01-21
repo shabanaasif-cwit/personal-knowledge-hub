@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 function Home() {
+
+  // ✅ ADDED: useNavigate (nothing removed)
+  const navigate = useNavigate();
+
   const [notes, setNotes] = useState([
     { id: 1, title: 'React Fundamentals', category: 'Learning', date: '2024-01-20', icon: '⚛️' },
     { id: 2, title: 'Tailwind CSS Guide', category: 'Design', date: '2024-01-19', icon: '🎨' },
@@ -47,7 +52,6 @@ function Home() {
       {/* Stats Section */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
         
-        {/* Total Notes Card */}
         <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
           <div className="flex items-center justify-between">
             <div>
@@ -59,7 +63,6 @@ function Home() {
           </div>
         </div>
 
-        {/* Active Tasks Card */}
         <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
           <div className="flex items-center justify-between">
             <div>
@@ -73,7 +76,6 @@ function Home() {
           </div>
         </div>
 
-        {/* Completed Card */}
         <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
           <div className="flex items-center justify-between">
             <div>
@@ -154,7 +156,11 @@ function Home() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           
-          <div className="bg-white p-4 rounded-lg shadow text-center">
+          {/* ✅ ADDED ONLY: onClick for navigation */}
+          <div
+            className="bg-white p-4 rounded-lg shadow text-center cursor-pointer"
+            onClick={() => navigate("/organize-notes")}
+          >
             <div className="text-4xl mb-2">📚</div>
             <h3 className="font-semibold text-gray-900">Organize Notes</h3>
             <p className="text-sm text-gray-600 mt-1">Categorize and store your knowledge</p>
@@ -185,10 +191,9 @@ function Home() {
       <section className="mt-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-8 text-white text-center">
         <h2 className="text-2xl font-bold mb-2">Ready to Organize Your Knowledge?</h2>
         <p className="mb-6 text-blue-100">Start creating notes and managing tasks today!</p>
-        <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-blue-50 transition" href="/dashboard" alt="Get Started">
+        <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-blue-50 transition">
           Get Started →
         </button>
-
       </section>
 
     </div>

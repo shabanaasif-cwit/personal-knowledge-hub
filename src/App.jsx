@@ -9,6 +9,7 @@ import About from './pages/about.jsx'
 import Help from './pages/help.jsx'
 import Settings from './pages/setting.jsx'
 import Welcome from './pages/welcome.jsx'
+import OrganizeNotes from "./modules/organize-notes/organizeNotes";
 
 function App() {
   
@@ -32,6 +33,8 @@ function App() {
 
             {/* 2. CATCH-ALL: Redirects any broken links back to Home */}
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/organize-notes" element={<OrganizeNotes />} />
+
           </Routes>
         </main>
       </div>
