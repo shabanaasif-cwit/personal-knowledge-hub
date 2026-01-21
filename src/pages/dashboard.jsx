@@ -7,11 +7,9 @@ import Button from '../components/common/button';
 
 function Dashboard() {
   const { notes, addNote, updateNote, deleteNote, loading } = useNotes();
-
-  // ✅ ALL HOOKS AT TOP
   const [view, setView] = useState('list');
   const [selectedNote, setSelectedNote] = useState(null);
-  const [sortBy, setSortBy] = useState('date');
+  const [sortBy, setSortBy] = useState('date'); // State for sorting
 
   // ✅ SORTING LOGIC
   const sortedNotes = useMemo(() => {
@@ -39,9 +37,7 @@ function Dashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="text-2xl font-semibold text-gray-600 animate-pulse">
-          Loading Hub...
-        </div>
+        <div className="text-2xl font-semibold text-gray-600 animate-pulse">Loading Hub...</div>
       </div>
     );
   }
@@ -57,60 +53,71 @@ function Dashboard() {
   };
 
   const handleSaveNote = async (noteData) => {
-    if (noteData.id) {
-      await updateNote(noteData.id, noteData);
-    } else {
-      await addNote(noteData);
+    // ✅ PREVENT DUPLICATE TITLES
+    const isDuplicate = notes.some(note => 
+      note.title?.toLowerCase().trim() === noteData.title?.toLowerCase().trim() && 
+      note.id !== noteData.id // Allow saving if it's the same note being edited
+    );
+
+    if (isDuplicate) {
+      alert(`A note with the title "${noteData.title}" already exists. Please choose a unique title.`);
+      return; // Stop execution so the file is NOT added
     }
-    navigateBack();
+
+    try {
+      if (noteData.id && notes.find(n => n.id === noteData.id)) {
+        await updateNote(noteData.id, noteData);
+      } else {
+        await addNote(noteData);
+      }
+      navigateBack(); 
+    } catch (err) {
+      console.error('Error saving to Hub:', err);
+    }
   };
 
   return (
     <div className="min-h-screen w-full bg-gray-50 flex flex-col items-center p-4 md:p-8">
       <div className="w-full max-w-5xl">
-
+        
         <header className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
           <div>
             <h1 className="text-4xl font-black text-gray-900 tracking-tight">
               Knowledge <span className="text-blue-600">Hub</span>
             </h1>
-            <p className="text-gray-500 text-sm mt-1">
-              Manage notes and document files
-            </p>
+            <p className="text-gray-500 text-sm mt-1">Manage notes and document files</p>
           </div>
-
+          
           <div className="flex gap-3 items-center">
-            {/* ✅ SORT DROPDOWN */}
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="bg-white border rounded px-3 py-2 text-sm"
-            >
-              <option value="date">Sort by Date</option>
-              <option value="alpha">Sort Alphabetically</option>
-              <option value="modified">Last Modified</option>
-            </select>
+            {/* ✅ SORT DROPDOWN UI */}
+            {view === 'list' && (
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="date">Sort by Date</option>
+                <option value="alpha">Sort Alphabetically</option>
+                <option value="modified">Last Modified</option>
+              </select>
+            )}
 
             {view !== 'list' && (
               <Button onClick={navigateBack} variant="secondary">
                 ← Back to List
               </Button>
             )}
-
             <Button onClick={handleCreateNote} variant="primary" size="lg">
               + Create New Entry
             </Button>
           </div>
         </header>
 
-        <main className="w-full bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-100">
+        <main className="w-full bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-100 transition-all duration-300">
           {view === 'list' && (
             <NotesList
-              notes={sortedNotes}
-              onSelectNote={(note) => {
-                setSelectedNote(note);
-                setView('viewer');
-              }}
+              notes={sortedNotes} // ✅ Use sortedNotes here
+              onSelectNote={(note) => { setSelectedNote(note); setView('viewer'); }}
               onDeleteNote={deleteNote}
               onCreateNote={handleCreateNote}
             />
@@ -129,7 +136,7 @@ function Dashboard() {
               note={selectedNote}
               onEdit={() => setView('editor')}
               onDelete={async () => {
-                if (window.confirm('Delete this note?')) {
+                if(window.confirm('Are you sure you want to delete this entry?')) {
                   await deleteNote(selectedNote.id);
                   navigateBack();
                 }
@@ -140,10 +147,10 @@ function Dashboard() {
         </main>
 
         <footer className="mt-6 flex justify-center">
-          <div className="bg-white px-6 py-2 rounded-full shadow-sm border flex items-center gap-2">
+          <div className="bg-white px-6 py-2 rounded-full shadow-sm border border-gray-100 flex items-center gap-2">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            <p className="text-gray-600 text-sm font-semibold uppercase">
-              Total Hub Entries: {notes.length}
+            <p className="text-gray-600 text-sm font-semibold tracking-wide uppercase">
+              {`Total Hub Entries: ${notes.length}`}
             </p>
           </div>
         </footer>
