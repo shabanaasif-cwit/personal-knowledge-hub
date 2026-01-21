@@ -78,7 +78,7 @@ function OrganizeNotes() {
               <option value="modified">Last Modified</option>
             </select>
 
-            <Button onClick={createNote}>+ New Note</Button>
+            <Button onClick={createNote}>+ Create New Note</Button>
           </div>
         </div>
 
