@@ -9,7 +9,7 @@ function Dashboard() {
   const { notes, addNote, updateNote, deleteNote, loading } = useNotes();
   const [view, setView] = useState('list');
   const [selectedNote, setSelectedNote] = useState(null);
-  const [sortBy, setSortBy] = useState('date'); // State for sorting
+  const [sortBy, setSortBy] = useState('date'); 
 
   // ✅ SORTING LOGIC
   const sortedNotes = useMemo(() => {
@@ -56,12 +56,12 @@ function Dashboard() {
     // ✅ PREVENT DUPLICATE TITLES
     const isDuplicate = notes.some(note => 
       note.title?.toLowerCase().trim() === noteData.title?.toLowerCase().trim() && 
-      note.id !== noteData.id // Allow saving if it's the same note being edited
+      note.id !== noteData.id 
     );
 
     if (isDuplicate) {
       alert(`A note with the title "${noteData.title}" already exists. Please choose a unique title.`);
-      return; // Stop execution so the file is NOT added
+      return; 
     }
 
     try {
@@ -89,7 +89,6 @@ function Dashboard() {
           </div>
           
           <div className="flex gap-3 items-center">
-            {/* ✅ SORT DROPDOWN UI */}
             {view === 'list' && (
               <select
                 value={sortBy}
@@ -116,7 +115,7 @@ function Dashboard() {
         <main className="w-full bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-100 transition-all duration-300">
           {view === 'list' && (
             <NotesList
-              notes={sortedNotes} // ✅ Use sortedNotes here
+              notes={sortedNotes} 
               onSelectNote={(note) => { setSelectedNote(note); setView('viewer'); }}
               onDeleteNote={deleteNote}
               onCreateNote={handleCreateNote}
