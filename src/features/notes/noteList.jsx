@@ -11,7 +11,7 @@ function NotesList({ notes, onSelectNote, onDeleteNote, onCreateNote }) {
 
   if (notes.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-12 px-4 bg-white rounded-3xl shadow-xl border border-gray-100">
+      <div className="flex flex-col items-center justify-center py-12 px-4 bg-white rounded-xl shadow border border-gray-100">
         <div className="text-6xl mb-4 opacity-50">📝</div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">No Notes Yet</h2>
         <p className="text-gray-600 text-center mb-6 max-w-md">Create your first note to get started organizing your knowledge.</p>

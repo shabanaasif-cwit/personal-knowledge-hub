@@ -27,7 +27,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 p-4">
-      <div className="w-full max-w-md bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 text-center">
+      <div className="w-full max-w-md bg-white p-8 rounded-3xl shadow-sm border border-gray-100 text-center">
         <header className="mb-8">
           <h1 className="text-4xl font-black text-gray-900 mb-2">Get in Touch</h1>
           <p className="text-gray-500">Update your personal knowledge hub</p>
@@ -83,7 +83,7 @@ const Contact = () => {
             type="submit" 
             variant="primary" 
             size="lg"
-            className="w-full py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            className="w-full py-4 text-lg font-bold rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Syncing...' : 'Sync with Hub'}

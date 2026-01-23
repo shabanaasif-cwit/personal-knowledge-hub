@@ -1,17 +1,23 @@
 import React from 'react';
+//import Button from '../components/common/button';
+//import { useNavigate } from 'react-router-dom';
+
 import Button from '../components/common/button';
 import { useNavigate } from 'react-router-dom';
+// 1. IMPORT: Bringing in the modern icon set
+import { NotepadText, FileText, Link, FolderClosed } from 'lucide-react';
 
 const Welcome = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-[calc(100vh-80px)] w-full flex flex-col items-center justify-center bg-gray-50 p-6">
-      {/* Hero Card */}
-      <div className="w-full max-w-4xl bg-white p-12 rounded-[40px] shadow-2xl border border-gray-100 text-center animate-in fade-in zoom-in duration-700">
+      {/* Hero Card: The main container with entrance animations */}
+      <div className="w-full max-w-4xl bg-white p-12 rounded-[40px] shadow border border-gray-100 text-center animate-in fade-in zoom-in duration-700">
         
+        {/* ICON REPLACEMENT: Replacing the emoji with the professional NotepadText icon */}
         <div className="mb-8 inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-3xl shadow-lg shadow-blue-200">
-          <span className="text-4xl text-white">🚀</span>
+          <NotepadText size={40} color="white" strokeWidth={2.5} />
         </div>
 
         <h1 className="text-5xl md:text-6xl font-black text-black mb-6 tracking-tight">
@@ -24,6 +30,7 @@ const Welcome = () => {
           track external documentation links, and manage your files—all in one place.
         </p>
 
+        {/* Call to Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button 
             onClick={() => navigate('/dashboard')} 
@@ -43,23 +50,28 @@ const Welcome = () => {
           </Button>
         </div>
 
-        {/* Feature Highlights */}
+        {/* Feature Highlights: Now using Lucide components instead of emojis for a unified look */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-10 border-t border-gray-100">
-          <div className="text-left p-4">
+          {/* Notes Feature */}
+          <div className="text-left p-4 hover:bg-blue-50/50 rounded-2xl transition-colors">
             <h3 className="text-black font-black text-lg mb-2 flex items-center gap-2">
-              <span className="text-blue-600">📝</span> Notes
+              <FileText className="text-blue-600" size={20} /> Notes
             </h3>
             <p className="text-sm text-gray-500 font-medium">Capture ideas and code snippets instantly.</p>
           </div>
-          <div className="text-left p-4">
+
+          {/* Links Feature */}
+          <div className="text-left p-4 hover:bg-blue-50/50 rounded-2xl transition-colors">
             <h3 className="text-black font-black text-lg mb-2 flex items-center gap-2">
-              <span className="text-blue-600">🔗</span> Links
+              <Link className="text-blue-600" size={20} /> Links
             </h3>
             <p className="text-sm text-gray-500 font-medium">Keep your GitHub and documentation organized.</p>
           </div>
-          <div className="text-left p-4">
+
+          {/* Files Feature */}
+          <div className="text-left p-4 hover:bg-blue-50/50 rounded-2xl transition-colors">
             <h3 className="text-black font-black text-lg mb-2 flex items-center gap-2">
-              <span className="text-blue-600">📁</span> Files
+              <FolderClosed className="text-blue-600" size={20} /> Files
             </h3>
             <p className="text-sm text-gray-500 font-medium">Securely attach documents to any entry.</p>
           </div>
@@ -67,7 +79,7 @@ const Welcome = () => {
       </div>
 
       <footer className="mt-8 text-gray-400 text-xs font-bold uppercase tracking-[0.3em]">
-       All rights reserved © 2024 Personal Knowledge Hub
+       All rights reserved © 2026 Personal Knowledge Hub
       </footer>
     </div>
   );

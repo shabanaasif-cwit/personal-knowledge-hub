@@ -12,13 +12,18 @@ import Welcome from './pages/welcome.jsx'
 import OrganizeNotes from "./modules/organize-notes/organizeNotes";
 
 function App() {
-  
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
+      {/* 1. Fixed Header: Make sure your Header component has a z-index */}
       <Header />
-      <div className="flex flex-1">
+
+      <div className="flex flex-1 pt-16 md:pt-20"> 
+        {/* 2. Added Sidebar back: Using a wrapper to ensure it stays on the left */}
         <Sidebar />
-        <main className="flex-1 p-4">
+
+        {/* 3. Content Shift: Added md:ml-64 (or whatever your sidebar width is) 
+           so the main content doesn't sit underneath the sidebar on desktop */}
+        <main className="flex-1 p-4 w-full transition-all duration-300 overflow-x-hidden">
           <Routes>
             <Route path="/" element={<Welcome />} />
 
@@ -28,8 +33,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/help" element={<Help />} />
             <Route path="/settings" element={<Settings />} />
-
-            {/* ✅ FIXED ORDER */}
+            
             <Route path="/organize-notes" element={<OrganizeNotes />} />
 
             <Route path="*" element={<Navigate to="/" />} />

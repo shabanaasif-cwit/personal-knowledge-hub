@@ -13,8 +13,9 @@ const About = () => {
        min-h-screen, flex, and items-center justify-center ensure the content 
        is perfectly centered as per your previous design request.
     */
+   
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className="w-full max-w-3xl bg-white p-10 rounded-3xl shadow-2xl border border-gray-100">
+      <div className="w-full max-w-3xl bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
         
         <header className="text-center mb-10">
           <h1 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">

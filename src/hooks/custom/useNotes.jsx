@@ -23,8 +23,9 @@ function useNotes() {
     };
 
     init();
+    //run only once because of empty dependency array
   }, []);
-
+//
   const addNote = async (note) => {
     try {
       const newNotes = [...notes, note];

@@ -86,7 +86,7 @@ const Settings = () => {
         </div>
 
         <footer className="mt-10 pt-6 text-center text-[10px] text-gray-400 font-bold uppercase tracking-widest">
-          Hub Storage Engine v2.4 • Secured via Local Storage
+          Hub Storage Engine • Secured via Local Storage
         </footer>
       </div>
     </div>
