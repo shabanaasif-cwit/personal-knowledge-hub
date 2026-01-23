@@ -59,7 +59,7 @@ function NoteEditor({ note, onSave, onCancel }) {// Receives 'note' (data), 'onS
   return (
     <div className="bg-white rounded-lg p-2">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">
-        {note ? '✏️ Edit Entry' : '📝 Create New Entry'}
+        {note ? 'Edit Entry' : ' Create New Entry'}
       </h2>
 
       <div className="space-y-6">

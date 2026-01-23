@@ -61,7 +61,7 @@ function Header() {
           className="md:hidden p-2 text-white hover:bg-blue-600 rounded-lg transition-colors"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={25} /> : <Menu size={25} />}
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 

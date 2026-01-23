@@ -72,48 +72,50 @@ function Dashboard() {
       <div className="w-full max-w-5xl">
         
         {/* HEADER SECTION */}
-        <header className="flex justify-between items-center mb-10">
-          <div>
-            <div className="inline-flex items-center gap-2 mb-2">
-               <GraduationCap className="text-blue-600" size={24} />
-               <span className="text-xs font-black text-blue-600 uppercase tracking-widest">Entry Manager</span>
+          <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-2">
+                <GraduationCap className="text-blue-600" size={24} />
+                <span className="text-xs font-black text-blue-600 uppercase tracking-widest">Entry Manager</span>
+              </div>
+              <h1 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight leading-none">
+                Knowledge <span className="text-blue-600">Hub</span>
+              </h1>
+              <p className="text-gray-500 text-sm mt-2 font-medium">Manage and document your digital brain.</p>
             </div>
-            <h1 className="text-4xl font-black text-gray-900 tracking-tight leading-none">
-              Knowledge <span className="text-blue-600">Hub</span>
-            </h1>
-            <p className="text-gray-500 text-sm mt-2 font-medium">Manage and document your digital brain.</p>
-          </div>
-          
-          <div className="flex gap-3 items-center">
-            {view === 'list' && (
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-semibold shadow-sm outline-none cursor-pointer"
-              >
-                <option value="date">Sort by Date</option>
-                <option value="alpha">Alphabetical</option>
-                <option value="modified">Modified</option>
-              </select>
-            )}
+            
+            <div className="flex w-full md:w-auto gap-3 items-center">
+              {view === 'list' && (
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="flex-1 md:flex-none bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-semibold shadow-sm outline-none cursor-pointer"
+                >
+                  <option value="date">Sort by Date</option>
+                  <option value="alpha">Alphabetical</option>
+                  <option value="modified">Modified</option>
+                </select>
+              )}
 
-            {view !== 'list' && (
+              {view !== 'list' && (
+                <button 
+                  onClick={navigateBack} 
+                  className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-white border border-gray-200 px-5 py-2.5 rounded-xl font-bold text-gray-700 hover:bg-gray-50 text-sm"
+                >
+                  <ArrowLeft size={16} /> <span className="hidden sm:inline">Back to List</span>
+                </button>
+              )}
+
+              {/* This button stays, but we adjust padding and text for mobile */}
               <button 
-                onClick={navigateBack} 
-                className="flex items-center gap-2 bg-white border border-gray-200 px-5 py-2.5 rounded-xl font-bold text-gray-700 hover:bg-gray-50 text-sm"
+                onClick={handleCreateNote} 
+                className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 md:px-6 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all active:scale-95"
               >
-                <ArrowLeft size={16} /> Back to List
+                <Plus size={18} /> 
+                <span className="md:inline">New Entry</span>
               </button>
-            )}
-
-            <button 
-              onClick={handleCreateNote} 
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all active:scale-95"
-            >
-              <Plus size={18} /> Create New Entry
-            </button>
-          </div>
-        </header>
+            </div>
+          </header>
 
         {/* MAIN CONTENT AREA */}
         <main className="w-full bg-white rounded-[2rem] shadow-sm p-10 border border-gray-100">
