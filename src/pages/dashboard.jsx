@@ -3,7 +3,7 @@ import useNotes from '../hooks/custom/useNotes';
 import NotesList from '../features/notes/noteList'; 
 import NoteEditor from '../features/notes/noteEitor'; 
 import NoteViewer from '../features/notes/noteViewer';
-import Button from '../components/common/button';
+import { Plus, ArrowLeft, GraduationCap } from 'lucide-react';
 
 function Dashboard() {
   const { notes, addNote, updateNote, deleteNote, loading } = useNotes();
@@ -11,33 +11,24 @@ function Dashboard() {
   const [selectedNote, setSelectedNote] = useState(null);
   const [sortBy, setSortBy] = useState('date'); 
 
-  // ✅ SORTING LOGIC
   const sortedNotes = useMemo(() => {
     const copiedNotes = [...notes];
-
     if (sortBy === 'alpha') {
-      return copiedNotes.sort((a, b) =>
-        (a.title || '').localeCompare(b.title || '')
-      );
+      return copiedNotes.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
     }
-
     if (sortBy === 'modified') {
-      return copiedNotes.sort(
-        (a, b) =>
-          new Date(b.updatedAt || b.date) -
-          new Date(a.updatedAt || a.date)
-      );
+      return copiedNotes.sort((a, b) => new Date(b.updatedAt || b.date) - new Date(a.updatedAt || a.date));
     }
-
-    return copiedNotes.sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
+    return copiedNotes.sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [notes, sortBy]);
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="text-2xl font-semibold text-gray-600 animate-pulse">Loading Hub...</div>
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-sm font-bold text-gray-500 uppercase tracking-widest">Loading Hub...</p>
+        </div>
       </div>
     );
   }
@@ -53,14 +44,13 @@ function Dashboard() {
   };
 
   const handleSaveNote = async (noteData) => {
-    // ✅ PREVENT DUPLICATE TITLES
     const isDuplicate = notes.some(note => 
       note.title?.toLowerCase().trim() === noteData.title?.toLowerCase().trim() && 
       note.id !== noteData.id 
     );
 
     if (isDuplicate) {
-      alert(`A note with the title "${noteData.title}" already exists. Please choose a unique title.`);
+      alert(`A note with the title "${noteData.title}" already exists.`);
       return; 
     }
 
@@ -77,15 +67,21 @@ function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-50 flex flex-col items-center p-4 md:p-8">
+    /* pt-28 (112px) provides plenty of space for the 80px fixed header */
+    <div className="min-h-screen w-full bg-[#f8fafc] flex flex-col items-center p-10 font-sans pt-28">
       <div className="w-full max-w-5xl">
         
-        <header className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+        {/* HEADER SECTION */}
+        <header className="flex justify-between items-center mb-10">
           <div>
-            <h1 className="text-4xl font-black text-gray-900 tracking-tight">
+            <div className="inline-flex items-center gap-2 mb-2">
+               <GraduationCap className="text-blue-600" size={24} />
+               <span className="text-xs font-black text-blue-600 uppercase tracking-widest">Entry Manager</span>
+            </div>
+            <h1 className="text-4xl font-black text-gray-900 tracking-tight leading-none">
               Knowledge <span className="text-blue-600">Hub</span>
             </h1>
-            <p className="text-gray-500 text-sm mt-1">Manage notes and document files</p>
+            <p className="text-gray-500 text-sm mt-2 font-medium">Manage and document your digital brain.</p>
           </div>
           
           <div className="flex gap-3 items-center">
@@ -93,26 +89,34 @@ function Dashboard() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-semibold shadow-sm outline-none cursor-pointer"
               >
                 <option value="date">Sort by Date</option>
-                <option value="alpha">Sort Alphabetically</option>
-                <option value="modified">Last Modified</option>
+                <option value="alpha">Alphabetical</option>
+                <option value="modified">Modified</option>
               </select>
             )}
 
             {view !== 'list' && (
-              <Button onClick={navigateBack} variant="secondary">
-                ← Back to List
-              </Button>
+              <button 
+                onClick={navigateBack} 
+                className="flex items-center gap-2 bg-white border border-gray-200 px-5 py-2.5 rounded-xl font-bold text-gray-700 hover:bg-gray-50 text-sm"
+              >
+                <ArrowLeft size={16} /> Back to List
+              </button>
             )}
-            <Button onClick={handleCreateNote} variant="primary" size="lg">
-              + Create New Entry
-            </Button>
+
+            <button 
+              onClick={handleCreateNote} 
+              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all active:scale-95"
+            >
+              <Plus size={18} /> Create New Entry
+            </button>
           </div>
         </header>
 
-        <main className="w-full bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-100 transition-all duration-300">
+        {/* MAIN CONTENT AREA */}
+        <main className="w-full bg-white rounded-[2rem] shadow-sm p-10 border border-gray-100">
           {view === 'list' && (
             <NotesList
               notes={sortedNotes} 
@@ -145,11 +149,12 @@ function Dashboard() {
           )}
         </main>
 
-        <footer className="mt-6 flex justify-center">
-          <div className="bg-white px-6 py-2 rounded-full shadow-sm border border-gray-100 flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            <p className="text-gray-600 text-sm font-semibold tracking-wide uppercase">
-              {`Total Hub Entries: ${notes.length}`}
+        {/* FOOTER */}
+        <footer className="mt-8 flex justify-center">
+          <div className="bg-white px-6 py-2.5 rounded-full shadow-sm border border-gray-100 flex items-center gap-3">
+            <span className="flex h-2 w-2 rounded-full bg-blue-500"></span>
+            <p className="text-gray-400 text-[10px] font-black tracking-[0.2em] uppercase">
+              {`Total Entries: ${notes.length}`}
             </p>
           </div>
         </footer>
