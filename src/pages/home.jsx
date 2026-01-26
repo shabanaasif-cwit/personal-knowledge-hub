@@ -120,14 +120,14 @@ function Home() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <FeatureCard 
             icon={<BookOpen size={18}/>} 
-            title="Organize" 
+            title="Organize Notes" 
             iconBg="bg-blue-50 text-blue-600" 
             //naviagte on notes page which is named Notes.jsx
             onClick={() => navigate('/notes')} 
           />
           <FeatureCard icon={<ClipboardList size={18}/>} title="Tasks" iconBg="bg-emerald-50 text-emerald-600" />
           <FeatureCard icon={<Tags size={18}/>} title="Tags" iconBg="bg-purple-50 text-purple-600" />
-          <FeatureCard icon={<Settings2 size={18}/>} title="Settings" iconBg="bg-slate-50 text-slate-600" />
+          <FeatureCard icon={<Settings2 size={18}/>} title="Settings" iconBg="bg-slate-50 text-slate-600" onClick={() => navigate('/settings')}/>
         </div>
       </section>
 
