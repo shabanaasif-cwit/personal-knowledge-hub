@@ -17,10 +17,10 @@ const Welcome = () => {
         
         {/* ICON REPLACEMENT: Replacing the emoji with the professional NotepadText icon */}
         <div className="mb-8 inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-3xl shadow-lg shadow-blue-200">
-          <NotepadText size={40} color="white" strokeWidth={2.5} />
+          <NotepadText size={40} color="white" strokeWidth={2} />
         </div>
 
-        <h1 className="text-5xl md:text-6xl font-black text-black mb-6 tracking-tight">
+        <h1 className="text-5xl md:text-4xl font-black text-black mb-6 tracking-tight">
           Welcome to Your <br />
           <span className="text-blue-600">Personal Knowledge Hub</span>
         </h1>
@@ -53,13 +53,17 @@ const Welcome = () => {
         {/* Feature Highlights: Now using Lucide components instead of emojis for a unified look */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-10 border-t border-gray-100">
           {/* Notes Feature */}
-          <div className="text-left p-4 hover:bg-blue-50/50 rounded-2xl transition-colors">
-            <h3 className="text-black font-black text-lg mb-2 flex items-center gap-2">
-              <FileText className="text-blue-600" size={20} /> Notes
-            </h3>
-            <p className="text-sm text-gray-500 font-medium">Capture ideas and code snippets instantly.</p>
-          </div>
-
+            <div
+              onClick={() => navigate('/notes')}
+              className="text-left p-4 hover:bg-blue-50/50 rounded-2xl transition-colors cursor-pointer">
+              <h3 className="text-black font-black text-lg mb-2 flex items-center gap-2">
+                <FileText className="text-blue-600" size={20} />
+                Notes
+              </h3>
+              <p className="text-sm text-gray-500 font-medium">
+                Capture ideas and code snippets instantly.
+              </p>
+            </div>
           {/* Links Feature */}
           <div className="text-left p-4 hover:bg-blue-50/50 rounded-2xl transition-colors">
             <h3 className="text-black font-black text-lg mb-2 flex items-center gap-2">
