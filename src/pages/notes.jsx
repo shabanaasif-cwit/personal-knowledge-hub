@@ -88,7 +88,7 @@ function Notes() {
               <p className="text-gray-500 text-sm mt-2 font-medium">Manage and document your digital brain.</p>
             </div>
             
-            <div className="flex w-full md:w-auto gap-3 items-center">
+            <div className="flex w-full md:w-auto gap-2 items-center">
               {view === 'list' && (
                 <select
                   value={sortBy}
@@ -116,7 +116,7 @@ function Notes() {
                 className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 md:px-6 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all active:scale-95"
               >
                 <Plus size={18} /> 
-                <span className="md:inline">New Entry</span>
+                <span className="md:inline">New Notes</span>
               </button>
             </div>
           </header>
