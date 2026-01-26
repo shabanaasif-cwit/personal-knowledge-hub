@@ -29,8 +29,8 @@ function Home() {
         <div className="inline-flex p-2.5 bg-blue-600 text-white rounded-xl shadow-md mb-4">
           <GraduationCap size={24} />
         </div>
-        <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 mb-2">
-          Welcome to Your <span className="text-blue-600">Knowledge Hub</span>
+        <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 mb-2 cursor-pointer">
+          Welcome to Your <span className="text-blue-600" onClick={() => navigate('/home')}>Knowledge Hub</span>
         </h1>
         <p className="text-slate-500 text-sm font-medium">
           Organize, manage, and expand your digital brain in one workspace.
@@ -63,7 +63,7 @@ function Home() {
               <h2 className="text-xs font-bold text-slate-600 uppercase tracking-wider">Active Tasks</h2>
               {/* Updated Button: Added bg-blue-600, px-3, py-1, and rounded-md */}
               <button 
-                onClick={() => navigate('/dashboard')}
+                onClick={() => navigate('/notes')}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-[10px] uppercase tracking-tighter px-3 py-1.5 rounded-2xl flex items-center gap-1 transition-all shadow-sm active:scale-95"
               >
                 View All <ArrowRight size={12} />
@@ -90,7 +90,7 @@ function Home() {
               <h2 className="text-xs font-bold text-slate-600 uppercase tracking-wider">Active Tasks</h2>
               {/* Updated Button: Added bg-blue-600, px-3, py-1, and rounded-md */}
               <button 
-                onClick={() => navigate('/dashboard')}
+                onClick={() => navigate('/notes')}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-[10px] uppercase tracking-tighter px-3 py-1.5 rounded-2xl flex items-center gap-1 transition-all shadow-sm active:scale-95"
               >
                 View All <ArrowRight size={12} />
@@ -122,6 +122,7 @@ function Home() {
             icon={<BookOpen size={18}/>} 
             title="Organize" 
             iconBg="bg-blue-50 text-blue-600" 
+            //naviagte on notes page which is named Notes.jsx
             onClick={() => navigate('/notes')} 
           />
           <FeatureCard icon={<ClipboardList size={18}/>} title="Tasks" iconBg="bg-emerald-50 text-emerald-600" />
@@ -137,7 +138,7 @@ function Home() {
           <p className="text-blue-100 text-xs opacity-80">Access your notes and start organizing today.</p>
         </div>
         <button 
-          onClick={() => navigate('/dashboard')} // Updated to navigate to notes
+          onClick={() => navigate('/notes')} // Updated to navigate to notes
           className="relative z-10 bg-white text-blue-600 px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-blue-50 transition-all shadow-md flex items-center gap-2 whitespace-nowrap active:scale-95"
         >
           Get Started Now <ArrowRight size={16} />

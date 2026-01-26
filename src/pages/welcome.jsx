@@ -33,7 +33,7 @@ const Welcome = () => {
         {/* Call to Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button 
-            onClick={() => navigate('/dashboard')} 
+            onClick={() => navigate('/notes')} 
             variant="primary" 
             size="lg"
             className="w-full sm:w-auto px-12 py-4 text-lg font-bold rounded-2xl shadow-xl hover:-translate-y-1 transition-all"

@@ -2,7 +2,9 @@ import Button from "../../components/common/button"; // Corrected path and casin
 
 function NoteViewer({ note, onEdit, onDelete, onClose }) {
   // Requirement: Conditional rendering to handle empty states
-  if (!note) return <div className="p-4 text-gray-500">Select a note to view.</div>;
+  if (!note) 
+    return 
+    <div className="p-4 text-gray-500">Select a note to view.</div>;
 
   return (
     <div className="note-viewer p-6 bg-white rounded shadow">

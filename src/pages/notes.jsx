@@ -4,8 +4,8 @@ import NotesList from '../features/notes/noteList';
 import NoteEditor from '../features/notes/noteEitor'; 
 import NoteViewer from '../features/notes/noteViewer';
 import { Plus, ArrowLeft, GraduationCap } from 'lucide-react';
-
-function Dashboard() {
+  
+function Notes() {
   const { notes, addNote, updateNote, deleteNote, loading } = useNotes();
   const [view, setView] = useState('list');
   const [selectedNote, setSelectedNote] = useState(null);
@@ -55,11 +55,15 @@ function Dashboard() {
     }
 
     try {
+      //arrow function to handle both adding and updating notes
       if (noteData.id && notes.find(n => n.id === noteData.id)) {
+        // This overwrites the old version with your new changes.
         await updateNote(noteData.id, noteData);
       } else {
+        //this create a new note completely
         await addNote(noteData);
       }
+      // immediately after a note is successfully saved to provide a seamless User Experience (UX). expect the task to be "done."emoves the user from the "Edit Mode" entirely,
       navigateBack(); 
     } catch (err) {
       console.error('Error saving to Hub:', err);
@@ -78,8 +82,8 @@ function Dashboard() {
                 <GraduationCap className="text-blue-600" size={24} />
                 <span className="text-xs font-black text-blue-600 uppercase tracking-widest">Entry Manager</span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight leading-none">
-                Knowledge <span className="text-blue-600">Hub</span>
+              <h1 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight leading-none cursor-pointer">
+                Knowledge <span className="text-blue-600" onClick={() => navigate('/home')}>Hub</span>
               </h1>
               <p className="text-gray-500 text-sm mt-2 font-medium">Manage and document your digital brain.</p>
             </div>
@@ -166,4 +170,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Notes;

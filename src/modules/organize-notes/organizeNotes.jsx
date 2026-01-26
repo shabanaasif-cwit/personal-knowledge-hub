@@ -46,11 +46,13 @@ function OrganizeNotes() {
     setSelectedNote(null);
   };
 
+  //createNote function to set view to editor and clear selectedNote
   const createNote = () => {
     setSelectedNote(null);
     setView('editor');
   };
 
+  //saveNote function to handle both adding and updating notes
   const saveNote = async (noteData) => {
     if (noteData.id) {
       await updateNote(noteData.id, noteData);
@@ -61,7 +63,10 @@ function OrganizeNotes() {
   };
 
   return (
+    //This is a very important technical class. It tells the browser: "This div must be at least as tall as the entire phone or computer screen.
     <div className="p-6 bg-gray-100 min-h-screen">
+
+      {/* mx-auto This is a very important technical class. It tells the browser: "This div must be at least as tall as the entire phone or computer screen." */}
       <div className="max-w-5xl mx-auto">
 
         <div className="flex justify-between items-center mb-6">

@@ -19,9 +19,9 @@ function Sidebar({ setView }) {
   // Menu Data - Emojis replaced with Lucide Components
   const menuItems = [
     { id: 1, label: 'Home', icon: Home, path: '/home' },
-    { id: 2, label: 'Notes Hub', icon: NotepadText, path: '/dashboard' },
-    { id: 3, label: 'About', icon: Info, path: '/about' },
+    { id: 2, label: 'Notes Hub', icon: NotepadText, path: '/notes' },
     { id: 4, label: 'Contact', icon: CircleUserRound, path: '/contact' },
+    { id: 3, label: 'About', icon: Info, path: '/about' },
     { id: 5, label: 'Help', icon: HelpCircle, path: '/help' },
     { id: 6, label: 'Settings', icon: Settings, path: '/settings' },
   ];
@@ -31,10 +31,10 @@ function Sidebar({ setView }) {
     setIsOpen(!isOpen);
   };
 
-  // Logic: Handles navigation and resets Dashboard view if necessary (Backend logic preserved)
+  // Logic: Handles navigation and resets Notes view if necessary (Backend logic preserved)
   const handleNavigation = (path) => {
 
-    if (path === '/dashboard' && setView) {
+    if (path === '/notes' && setView) {
       setView('list');
     }
     setIsOpen(false); // Close sidebar after clicking an item

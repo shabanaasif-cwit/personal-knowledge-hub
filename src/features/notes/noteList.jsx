@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '../../components/common/button';
+import { NotebookPen} from 'lucide-react';
 
 function NotesList({ notes, onSelectNote, onDeleteNote, onCreateNote }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -12,7 +13,9 @@ function NotesList({ notes, onSelectNote, onDeleteNote, onCreateNote }) {
   if (notes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12 px-4 bg-white rounded-xl shadow border border-gray-100">
-        <div className="text-6xl mb-4 opacity-50">📝</div>
+        <div className="bg-blue-600 p-2.5 rounded-xl text-white shadow-lg shadow-blue-100 opacity-70 mb-4">
+            <NotebookPen size={24} strokeWidth={2.5} />
+          </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">No Notes Yet</h2>
         <p className="text-gray-600 text-center mb-6 max-w-md">Create your first note to get started organizing your knowledge.</p>
         <Button onClick={onCreateNote} variant="primary">Create First Note</Button>
@@ -58,7 +61,7 @@ function NotesList({ notes, onSelectNote, onDeleteNote, onCreateNote }) {
 
               {/* Action Buttons Side */}
               <div className="flex items-center gap-2">
-                {/* UPDATE BUTTON: Triggers the Editor via Dashboard */}
+                {/* UPDATE BUTTON: Triggers the Editor via Notes */}
                 <button
                   onClick={() => onSelectNote(note)}
                   className="p-2.5 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-200"

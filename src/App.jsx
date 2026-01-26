@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Header from "./components/layout/header.jsx"
 import Sidebar from "./components/layout/sidebar.jsx"
 import Home from "./pages/home.jsx"
-import Dashboard from "./pages/dashboard.jsx"
+import Notes from "./pages/notes.jsx"
 import Contact from './pages/contact.jsx' 
 import About from './pages/about.jsx'
 import Help from './pages/help.jsx'
@@ -28,7 +28,7 @@ function App() {
             <Route path="/" element={<Welcome />} />
 
             <Route path="/home" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/notes" element={<Notes />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/help" element={<Help />} />

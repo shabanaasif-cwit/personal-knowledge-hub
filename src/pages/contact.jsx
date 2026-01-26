@@ -44,7 +44,7 @@ const Contact = () => {
               onChange={handleChange}
               /* text-black: forces typed text to be black */
               /* placeholder-gray-400: keeps the placeholder muted */
-              className="w-full p-4 bg-white text-black border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder-gray-400"
+              className="w-full p-4 bg-white text-black border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder-gray-300"
               placeholder="Shabana Asif"
               required
             />
@@ -58,7 +58,7 @@ const Contact = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-4 bg-white text-black border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder-gray-400"
+              className="w-full p-4 bg-white text-black border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder-gray-300"
               placeholder="shabanaasif.cwit@gmail.com"
               required
             />
@@ -72,7 +72,7 @@ const Contact = () => {
               rows="4"
               value={formData.message}
               onChange={handleChange}
-              className="w-full p-4 bg-white text-black border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none placeholder-gray-400"
+              className="w-full p-4 bg-white text-black border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none placeholder-gray-300"
               placeholder="Enter your notes or message here..."
               required
             ></textarea>

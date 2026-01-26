@@ -74,7 +74,7 @@ const Help = () => {
         {/* BUTTON ACTIONS */}
         <div className="mt-10 pt-8 border-t border-slate-50 flex gap-4 justify-center">
           <Button 
-            onClick={() => navigate('/dashboard')} 
+            onClick={() => navigate('/notes')} 
             variant="primary" 
             className="px-8 py-3.5 font-black flex items-center justify-center gap-2 rounded-2xl shadow-lg shadow-blue-100 transition-all active:scale-95"
           >
