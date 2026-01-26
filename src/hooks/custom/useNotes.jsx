@@ -9,7 +9,9 @@ function useNotes() {
   const [error, setError] = useState(null);
 
   // Initialize file on mount
+  //The hook initializes. loading is true, notes is [], and error is null.
   useEffect(() => {
+    //The hook initializes. loading is true, notes is [], and error is null.
     const init = async () => {
       try {
         await initializeFile();
@@ -29,10 +31,12 @@ function useNotes() {
   const addNote = async (note) => {
     try {
       const newNotes = [...notes, note];
+      //code pauses here (due to await) until the file system or API responds.
       await writeFile(newNotes);
       setNotes(newNotes);
       return note;
-    } catch (err) {
+    } catch (err) { 
+      //If writeFile fails, the setNotes line is skipped. Instead, the error state is updated,
       setError(err.message);
       throw err;
     }

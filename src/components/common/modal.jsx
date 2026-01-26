@@ -8,7 +8,7 @@ function Modal({ isOpen, title, onClose, children }) {
           <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 text-2xl"
+            className="text-gray-500 hover:text-gray-700 text-xl"
           >
             ✕
           </button>

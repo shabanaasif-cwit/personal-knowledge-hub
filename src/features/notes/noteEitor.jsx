@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';// Imports React hooks for state and lifecycle management
 import Button from "../../components/common/button";// Imports a custom reusable Button component
+import { NotebookPen} from 'lucide-react';// Imports a pen icon from the Lucide icon library
+
 
 function NoteEditor({ note, onSave, onCancel }) {// Receives 'note' (data), 'onSave' (function), and 'onCancel' (function) as props
   // 1. STATE INITIALIZATION: Local variables for form fields
@@ -37,14 +39,14 @@ function NoteEditor({ note, onSave, onCancel }) {// Receives 'note' (data), 'onS
 
   // 4. SAVE LOGIC: Prepares the data bundle to be sent back to the parent component
   const handleSave = () => {// Validation: prevents saving if the title is empty or just spaces
-    if (!title.trim()) {
+    if (!title.trim()) { //.trim remove the whitespaces
       alert('Please enter a title');// Simple browser alert for validation feedback
       return; // Exit the function so onSave is not called
     }
     
     onSave({
-      id: note?.id || Date.now(),
-      title,
+      id: note?.id || Date.now(), //this line ensures that existing notes keep their ID, while new notes get a unique timestamp ID
+      title, 
       content,
       fileData,
       fileName,
@@ -58,9 +60,17 @@ function NoteEditor({ note, onSave, onCancel }) {// Receives 'note' (data), 'onS
 
   return (
     <div className="bg-white rounded-lg p-2">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">
-        {note ? '✏️ Edit Entry' : '📝 Create New Entry'}
-      </h2>
+      <div className="flex items-center gap-4 mb-6">
+    {/* The Lucide Icon Box */}
+    <div className="bg-blue-600 p-2.5 rounded-xl text-white shadow-lg shadow-blue-100 opacity-100">
+      <NotebookPen size={24} strokeWidth={2.5} />
+    </div>
+
+    {/* The Dynamic H2 Title */}
+    <h2 className="text-2xl font-bold text-gray-900">
+      {note ? 'Edit Entry' : ' Create New Entry'}
+    </h2>
+  </div>
 
       <div className="space-y-6">
         {/* Title */}
